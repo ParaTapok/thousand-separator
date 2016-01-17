@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thousand Separator</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        body {
+            background: #2980b9;
+            color: #fff;
+        }
+        .b-page {
+            text-align: center;
+            font: bold 80px/1 monospace, "Times New Roman", serif;
+            padding: 200px 0 0;
+        }
+        .example-one {
+            color: #3498db;
+        }
+        .example-two {
+
+        }
+    </style>
+    <script type="text/javascript">
+        var thousandSeparator = function(str) {
+            var parts = (str + '').split('.'),
+                main = parts[0],
+                len = main.length,
+                output = '',
+                i = len - 1;
+            
+            while(i >= 0) {
+                output = main.charAt(i) + output;
+                if ((len - i) % 3 === 0 && i > 0) {
+                    output = ' ' + output;
+                }
+                --i;
+            }
+
+            if (parts.length > 1) {
+                output += '.' + parts[1];
+            }
+            return output;
+        };
+    </script>
+</head>
+<body>
+
+    <div class="b-page">
+        <p class="example-one">12345678.90</p>
+        <p class="example-two">12345678.90</p>
+    </div>
+
+    <script type="text/javascript">
+        var element = document.getElementsByClassName('example-two')[0];
+        element.innerHTML = thousandSeparator(element.innerHTML);
+    </script>
+</body>
+</html>
